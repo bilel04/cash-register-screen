@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-tab-group>
+        <mat-tab *ngFor="let category of products" [label]="category.name">
+
+            <ng-container *ngIf="category">
+                <div class="row product">
+                    <div class="col-sm-6" *ngFor="let product of category.products">
+                        <mat-card class="mb-3">
+                            <mat-card-header>
+                                <mat-card-title-group>
+                                    <mat-card-title>{{product.name}}</mat-card-title>
+                                    <mat-card-subtitle>
+                                        {{product.price | calculate: product.tva | currency: 'EUR'
+                                        :'symbol':'1.2-2':'fr'}}
+                                    </mat-card-subtitle>
+                                    <img mat-card-sm-image src={{product.image}} class="product-image">
+                                </mat-card-title-group>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div *ngIf="!product.quantity else showQuantityTemplate">
+                                    <button class="btn btn-outline-primary btn-rounded" (click)="addToCart(product)">
+                                        {{'PRODUCT.add to cart' | translate}}</button>
+                                </div>
+
+                                <ng-template #showQuantityTemplate>
+                                    <div class="row quantity-field">
+                                        <div class="col-lg-2 col-md-3 col-sm-12">
+                                            <button class="btn btn-outline-secondary btn-rounded" (click)="reduceProductQuantity(product)">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 mt-1 mb-1">
+                                            <input type="number" disabled class="form-control form-control-sm text-center"
+                                                [(ngModel)]="product.quantity" [ngModelOptions]="{standalone: true}" />
+                                        </div>
+                                        <div class="col-lg-2 col-md-3 col-sm-12">
+                                            <button class="btn btn-outline-primary btn-rounded" (click)="addProductQuantity(product)">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                 <!--  <button (click)="data()">Hi</button> -->
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+            </ng-container>
+        </mat-tab>
+    </mat-tab-group>
+</div>
