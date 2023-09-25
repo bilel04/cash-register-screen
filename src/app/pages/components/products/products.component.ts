@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject, combineLatest, filter, map, takeUntil } from 'rxjs';
+import { RouterEnum } from 'src/app/@core/router-enum';
 import { Category } from 'src/app/shared/interfaces/category';
 import { Product } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
@@ -14,6 +15,7 @@ import { ProductsService } from 'src/app/shared/services/products/products.servi
 export class ProductsComponent {
   products: Category[] = [];
   private destroy$ = new Subject<void>();
+  title = RouterEnum.PRODUCTS;
 
   constructor(
     private _productsService: ProductsService,

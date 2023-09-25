@@ -7,13 +7,15 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CalculatePipe } from './pipes/calculate.pipe';
 import { OrderedProductPricePipe } from './pipes/ordered-product-price.pipe';
 import { TotalQuantityPricePipe } from './pipes/total-quantity-price.pipe';
+import { BreadcumbComponent } from './components/breadcumb/breadcumb.component';
 
 
 @NgModule({
   declarations: [
     CalculatePipe,
     TotalQuantityPricePipe,
-    OrderedProductPricePipe
+    OrderedProductPricePipe,
+    BreadcumbComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { TotalQuantityPricePipe } from './pipes/total-quantity-price.pipe';
     CurrencyMaskModule,
     CalculatePipe,
     OrderedProductPricePipe,
-    TotalQuantityPricePipe
+    TotalQuantityPricePipe,
+    BreadcumbComponent
   ],
 
 })

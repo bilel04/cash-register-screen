@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, map, takeUntil } from 'rxjs';
+import { RouterEnum } from 'src/app/@core/router-enum';
 import { Product } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 
@@ -14,7 +15,8 @@ export class CartComponent {
   products: Product[] = [];
   total!: number;
   private destroy$ = new Subject<void>();
-
+  title = RouterEnum.CART;
+  
   constructor(
     private _cartService: CartService,
     private _router: Router,

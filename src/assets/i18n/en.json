@@ -1,5 +1,9 @@
 {
     "HEADER": {
+        "PAGE": {
+          "products": "Products",
+          "cart": "Cart"
+        },
         "LANG": {
           "English": "English",
           "French": "French"
