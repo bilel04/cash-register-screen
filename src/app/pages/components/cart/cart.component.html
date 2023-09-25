@@ -1,5 +1,12 @@
 <div class="container">
     <div class="row mt-3">
+        <div class=" col-sm-3">
+            <button class="btn btn-outline-secondary btn-rounded" (click)="goBack()">
+                {{'CART.go back' | translate}}
+            </button>
+        </div>
+    </div>
+    <div class="row mt-3">
         <div class="col-sm-12" *ngFor="let product of products">
             <mat-card class="mb-3">
                 <mat-card-header>
@@ -39,9 +46,15 @@
             </div>
         </mat-card-content>
     </mat-card>
-    <div class="text-end mt-3">
-        <button class="btn btn-outline-primary btn-rounded">
+    <div class="text-end mt-3 mb-3">
+        <button class="btn btn-outline-primary btn-rounded" (click)="payOrder(payOrderBar)">
             {{'CART.pay' | translate}}
         </button>
     </div>
 </div>
+
+<ng-template #payOrderBar>
+    <span matSnackBarLabel>
+        {{'CART.order paid' | translate}}
+    </span>
+</ng-template>

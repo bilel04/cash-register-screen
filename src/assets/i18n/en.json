@@ -1,3 +1,20 @@
 {
-    
+    "HEADER": {
+        "LANG": {
+          "English": "English",
+          "French": "French"
+        }
+      },
+    "PRODUCT": {
+        "add to cart": "Add to Cart"
+    },
+    "CART": {
+        "go back": "Previous page",
+        "ordered quantity": "Ordered quantity: ",
+        "total amount": "Total amount: ",
+        "total quantity": "Total quantity ",
+        "total TTC": "Total TTC",
+        "pay": "Pay",
+        "order paid": "Order paid"
+    }
 }

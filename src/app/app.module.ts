@@ -11,7 +11,7 @@ import { ProductsComponent } from './pages/components/products/products.componen
 import { CartComponent } from './pages/components/cart/cart.component';
 import { HeaderComponent } from './pages/components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { SharedModule } from "./shared/shared.module";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 registerLocaleData(localeFr, 'fr'); // Définier la langue fr comme étant langue locale, je l'utilise dans le but d'afficher le currency code après le montant de produit.
 
@@ -43,6 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserModule,
         NgbModule,
         FormsModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot({
             defaultLanguage: 'fr',
@@ -58,6 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
         MatToolbarModule,
         MatBadgeModule,
         MatSelectModule,
+        MatSnackBarModule,
         SharedModule
     ]
 })

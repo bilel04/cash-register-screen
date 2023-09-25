@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Menu } from 'src/app/shared/classes/menu';
+import { Subject, combineLatest, filter, map, takeUntil } from 'rxjs';
 import { Category } from 'src/app/shared/interfaces/category';
 import { Product } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
@@ -13,43 +13,62 @@ import { ProductsService } from 'src/app/shared/services/products/products.servi
 })
 export class ProductsComponent {
   products: Category[] = [];
+  private destroy$ = new Subject<void>();
 
   constructor(
-    private productsService: ProductsService,
-    private cartService: CartService
+    private _productsService: ProductsService,
+    private _cartService: CartService
   ) {
-
   }
 
   getAllProducts() {
-    // Merge / Concat here
-    this.productsService.getAllProducts().subscribe(r => {
-      this.products = r.categories;
-      console.log(this.products);
-    });
+    combineLatest([this._productsService.getAllProducts(), this._cartService.order$])
+      .pipe(
+        map(([data, order]) => {
+          data.categories.forEach(category => {
+            category.products = category.products.filter((product: Product) => {
+              order.some((element) => {
+                if (product.id === element.id) {
+                  product.quantity = element.quantity;
+                }
+              })
+              return product;
+            })
+          });
+          return data;
+        })
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(r => {
+        this.products = r.categories;
+      });
   }
 
   addToCart(product: Product) {
     product.quantity = 1;
-    this.cartService.addNewProduct(product);
+    this._cartService.addNewProduct(product);
   }
 
   addProductQuantity(product: Product) {
     product.quantity += 1;
-    this.cartService.editPoductQuantity(product);
+    this._cartService.editPoductQuantity(product);
   }
 
   reduceProductQuantity(product: Product) {
     product.quantity -= 1;
     if (product.quantity != 0) {
-      this.cartService.editPoductQuantity(product);
+      this._cartService.editPoductQuantity(product);
       return;
     }
-    this.cartService.retrieveProduct(product.id);
+    this._cartService.retrieveProduct(product.id);
   }
-
 
   ngOnInit() {
     this.getAllProducts();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

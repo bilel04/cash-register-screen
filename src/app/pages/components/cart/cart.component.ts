@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 
@@ -12,23 +13,47 @@ import { CartService } from 'src/app/shared/services/cart/cart.service';
 export class CartComponent {
   products: Product[] = [];
   total!: number;
+  private destroy$ = new Subject<void>();
+
   constructor(
-    private cartService: CartService,
-    private router: Router
+    private _cartService: CartService,
+    private _router: Router,
+    private _snackBar: MatSnackBar
   ) {
 
   }
 
   getOrder() {
-    this.cartService.getOrder().subscribe(r => {
-      this.products = r;
-    })
+    this._cartService.getOrder()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(r => {
+        this.products = r;
+      })
+  }
+
+  payOrder(content: any) {
+    this._cartService.payOrder();
+    this._snackBar.openFromComponent(content, {
+      duration: 1000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'pay-cart-snack-bar'
+    });
+  }
+
+  goBack() {
+    this._router.navigate(['products']).then();
   }
 
   ngOnInit() {
     this.getOrder();
     if (this.products.length === 0) {
-      this.router.navigate(['products']).then(); // Dans une situation avancée, on implémente un Guard pour résoudre cette navigation
+      this._router.navigate(['products']).then(); // Dans une situation avancée, on implémente un Guard pour résoudre ce routage
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -1,12 +1,20 @@
 {
+    "HEADER": {
+        "LANG": {
+            "English": "Anglais",
+            "French": "Français"
+        }
+    },
     "PRODUCT": {
         "add to cart": "Ajouter au panier"
     },
     "CART": {
+        "go back": "Page précédente",
         "ordered quantity": "Quantité commandée: ",
         "total amount": "Montant total: ",
         "total quantity": "Quantité totale",
         "total TTC": "Total TTC",
-        "pay": "Payer"
+        "pay": "Payer",
+        "order paid": "Commande payée"
     }
 }
