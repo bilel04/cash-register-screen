@@ -14,7 +14,6 @@ export class CartService {
   getOrder() {
     return this.order$.asObservable();
   }
-
   addNewProduct(product: Product) {
     this.order.push(product)
     this.order$.next(this.order);

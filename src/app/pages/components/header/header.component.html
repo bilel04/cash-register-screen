@@ -1,4 +1,12 @@
-Hey
+<mat-toolbar>
+    <span class="header-title">Cash Register Screen</span>
+    <span class="example-spacer"></span>
+    <div matBadge="{{total}}" matBadgeSize="medium" matBadgeColor="accent" matBadgePosition="below before">
+        <button class="btn btn-outline-primary btn-rounded">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+    </div>
+</mat-toolbar>
 <ng-content select="router-outlet">
 
 </ng-content>
