@@ -15,7 +15,6 @@ export class ProductsService {
   getAllProducts(): Observable<Menu> {
     return this.http.get<Observable<Menu>>(this.url).pipe(
       map((data: any) => {
-        data.quantity = 0;
         return data;
       })
     );

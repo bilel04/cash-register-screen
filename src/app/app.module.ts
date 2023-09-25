@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatSelectModule} from '@angular/material/select';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { SharedModule } from "./shared/shared.module";
@@ -56,6 +57,7 @@ export function createTranslateLoader(http: HttpClient) {
         MatCardModule,
         MatToolbarModule,
         MatBadgeModule,
+        MatSelectModule,
         SharedModule
     ]
 })

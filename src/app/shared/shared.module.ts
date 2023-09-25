@@ -5,11 +5,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CalculatePipe } from './pipes/calculate.pipe';
+import { OrderedProductPricePipe } from './pipes/ordered-product-price.pipe';
+import { TotalQuantityPricePipe } from './pipes/total-quantity-price.pipe';
 
 
 @NgModule({
   declarations: [
-    CalculatePipe
+    CalculatePipe,
+    TotalQuantityPricePipe,
+    OrderedProductPricePipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { CalculatePipe } from './pipes/calculate.pipe';
     FormsModule,
     NgbModule,
     CurrencyMaskModule,
-    CalculatePipe
+    CalculatePipe,
+    OrderedProductPricePipe,
+    TotalQuantityPricePipe
   ],
 
 })

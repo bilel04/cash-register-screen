@@ -22,8 +22,10 @@ export class ProductsComponent {
   }
 
   getAllProducts() {
+    // Merge / Concat here
     this.productsService.getAllProducts().subscribe(r => {
       this.products = r.categories;
+      console.log(this.products);
     });
   }
 
@@ -46,11 +48,6 @@ export class ProductsComponent {
     this.cartService.retrieveProduct(product.id);
   }
 
-  data() {
-    this.cartService.order$.subscribe(r => {
-      console.log(r)
-    })
-  }
 
   ngOnInit() {
     this.getAllProducts();

@@ -1,1 +1,47 @@
-
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-sm-12" *ngFor="let product of products">
+            <mat-card class="mb-3">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>{{product.name}}</mat-card-title>
+                        <mat-card-subtitle>
+                            {{product.price | calculate: product.tva | currency:
+                            'EUR':'symbol':'1.2-2':'fr'}}
+                        </mat-card-subtitle>
+                        <img mat-card-sm-image src={{product.image}} class="product-image">
+                    </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    {{'CART.ordered quantity' | translate}}
+                    <span class="me-5">
+                        {{product.quantity}}
+                    </span>
+                    {{'CART.total amount' |translate}}
+                    <span>
+                        {{product.price | orderedProductPrice: product.quantity | currency:'EUR':'symbol':'1.2-2':'fr'}}
+                    </span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <mat-card class="mt-4 total-card">
+        <mat-card-content>
+            <div class="text-end">
+                {{'CART.total quantity' | translate}}
+                <span class="me-5">
+                    {{products | totalQuantityPrice: 'quantity' }}
+                </span>
+                {{'CART.total TTC' | translate}}
+                <span>
+                    {{products | totalQuantityPrice: 'price' | currency:'EUR':'symbol':'1.2-2':'fr'}}
+                </span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="text-end mt-3">
+        <button class="btn btn-outline-primary btn-rounded">
+            {{'CART.pay' | translate}}
+        </button>
+    </div>
+</div>

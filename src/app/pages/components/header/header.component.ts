@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 
@@ -12,19 +13,23 @@ export class HeaderComponent {
 
   constructor(
     public translate: TranslateService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {
-
-  }
-
-  ngOnInit() {
     if (this.translate.getBrowserLang() !== undefined) {
       this.translate.use(this.translate.getBrowserLang() ?? '');
     } else {
       this.translate.use('fr');
     }
+  }
+
+  navigateCart() {
+    this.router.navigate(['cart']).then();
+  }
+
+  ngOnInit() {
     this.cartService.order$.subscribe(r => {
-      this.total = r.length;
+      this.total = r.reduce((acc, curr) => acc + curr.quantity, 0)
     });
   }
 }

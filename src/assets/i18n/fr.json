@@ -1,5 +1,12 @@
 {
     "PRODUCT": {
         "add to cart": "Ajouter au panier"
+    },
+    "CART": {
+        "ordered quantity": "Quantité commandée: ",
+        "total amount": "Montant total: ",
+        "total quantity": "Quantité totale",
+        "total TTC": "Total TTC",
+        "pay": "Payer"
     }
 }

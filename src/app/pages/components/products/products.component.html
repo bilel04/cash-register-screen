@@ -10,8 +10,8 @@
                                 <mat-card-title-group>
                                     <mat-card-title>{{product.name}}</mat-card-title>
                                     <mat-card-subtitle>
-                                        {{product.price | calculate: product.tva | currency: 'EUR'
-                                        :'symbol':'1.2-2':'fr'}}
+                                        {{product.price | calculate: product.tva | currency:
+                                        'EUR':'symbol':'1.2-2':'fr'}}
                                     </mat-card-subtitle>
                                     <img mat-card-sm-image src={{product.image}} class="product-image">
                                 </mat-card-title-group>
@@ -25,22 +25,24 @@
                                 <ng-template #showQuantityTemplate>
                                     <div class="row quantity-field">
                                         <div class="col-lg-2 col-md-3 col-sm-12">
-                                            <button class="btn btn-outline-secondary btn-rounded" (click)="reduceProductQuantity(product)">
+                                            <button class="btn btn-outline-secondary btn-rounded"
+                                                (click)="reduceProductQuantity(product)">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 mt-1 mb-1">
-                                            <input type="number" disabled class="form-control form-control-sm text-center"
+                                            <input type="number" disabled
+                                                class="form-control form-control-sm text-center"
                                                 [(ngModel)]="product.quantity" [ngModelOptions]="{standalone: true}" />
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-12">
-                                            <button class="btn btn-outline-primary btn-rounded" (click)="addProductQuantity(product)">
+                                            <button class="btn btn-outline-primary btn-rounded"
+                                                (click)="addProductQuantity(product)">
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </ng-template>
-                                 <!--  <button (click)="data()">Hi</button> -->
                             </mat-card-content>
                         </mat-card>
                     </div>
